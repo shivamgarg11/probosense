@@ -1,10 +1,10 @@
 package com.shivam.probussense.Activities;
 
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+
+import com.shivam.probussense.R;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.anychart.anychart.AnyChart;
@@ -18,19 +18,16 @@ import com.anychart.anychart.Pie;
 import com.anychart.anychart.Position;
 import com.anychart.anychart.TooltipPositionMode;
 import com.anychart.anychart.ValueDataEntry;
-import com.shivam.probussense.Adaptors.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
-import com.shivam.probussense.Classes.swimmingpools;
-import com.shivam.probussense.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Charts extends AppCompatActivity {
+
 
     double hubid;
     int []weeks=new int[4];
@@ -39,6 +36,9 @@ public class Charts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
+
+
+
 
         hubid=getIntent().getDoubleExtra("assert_id",0);
 

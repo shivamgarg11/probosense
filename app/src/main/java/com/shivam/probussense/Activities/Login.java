@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
+import com.shivam.probussense.horizontalswip.horizontal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ public class Login extends AppCompatActivity {
         userid=findViewById(R.id.edituserid);
         password=findViewById(R.id.editpassword);
         login=findViewById(R.id.btnlogin);
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +115,7 @@ public class Login extends AppCompatActivity {
                 editor.putString("user_id", USERID);
                 editor.apply();
 
-                Intent i=new Intent(Login.this,tables.class);
+                Intent i=new Intent(Login.this,horizontal.class);
                 startActivity(i);
                 finish();
             }

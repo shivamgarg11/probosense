@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".horizontalswip.tableswipFragment">
 
 
     <LinearLayout
@@ -10,45 +12,45 @@
         android:orientation="vertical"
         android:background="#fff">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginBottom="25dp"
-    android:padding="5dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="10dp"/>
-
-        <TextView
-            android:id="@+id/Swimmingpoolname"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:hint="NAME"
-            android:gravity="center"
-            android:textSize="25dp"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="25dp"
+            android:padding="5dp">
 
-    <TextView
-        android:id="@+id/texttemp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="T=25C"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="#7c7c7c"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/fragSwimmingpoolname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:hint="NAME"
+                android:gravity="center"
+                android:textSize="25dp"/>
+
+            <TextView
+                android:id="@+id/fragtexttemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="T=25C"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#7c7c7c"/>
 
 
-</LinearLayout>
+        </LinearLayout>
 
 
 
@@ -76,12 +78,12 @@
                     android:textColor="#000"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
-            <ImageView
-                android:layout_marginTop="-10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/watericon"
-                android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_marginTop="-10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/watericon"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -91,15 +93,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-              <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="6.8"
-                  android:gravity="center"
-                  android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                  android:textStyle="bold"
-                  android:textSize="35dp"
-                  android:id="@+id/textphvalue"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6.8"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textStyle="bold"
+                    android:textSize="35dp"
+                    android:id="@+id/fragtextphvalue"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -109,7 +111,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textStyle="bold"
                     android:textSize="20dp"
-                    android:id="@+id/textphremark"/>
+                    android:id="@+id/fragtextphremark"/>
 
                 <TextView
                     android:textColor="#7c7c7c"
@@ -126,11 +128,11 @@
 
         </LinearLayout>
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/colorPrimaryDark"
-    android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="10dp"/>
 
 
         <LinearLayout
@@ -180,7 +182,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textStyle="bold"
                     android:textSize="35dp"
-                    android:id="@+id/textclvalue"/>
+                    android:id="@+id/fragtextclvalue"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -190,7 +192,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textStyle="bold"
                     android:textSize="20dp"
-                    android:id="@+id/textclremark"/>
+                    android:id="@+id/fragtextclremark"/>
 
                 <TextView
                     android:textColor="#7c7c7c"
@@ -221,7 +223,7 @@
             android:layout_marginBottom="25dp">
 
             <ImageView
-                android:id="@+id/analytics"
+                android:id="@+id/fraganalytics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/analyticsicon"
@@ -258,7 +260,7 @@
 
             <TextView
                 android:textColor="#7c7c7c"
-                android:id="@+id/textdate"
+                android:id="@+id/fragtextdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date"
@@ -267,7 +269,7 @@
 
             <TextView
                 android:textColor="#7c7c7c"
-                android:id="@+id/texttime"
+                android:id="@+id/fragtexttime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time"
@@ -284,7 +286,7 @@
 
             <TextView
                 android:textColor="#000"
-                android:id="@+id/texthubid"
+                android:id="@+id/fragtexthubid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hubid"
@@ -296,4 +298,6 @@
 
 
     </LinearLayout>
+
+
 </FrameLayout>
