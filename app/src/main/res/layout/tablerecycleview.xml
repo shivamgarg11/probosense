@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#fff">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="25dp"
+    android:padding="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/Swimmingpoolname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:hint="NAME"
+            android:gravity="center"
+            android:textSize="25dp"/>
+
+    <TextView
+        android:id="@+id/texttemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="T=25C"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#7c7c7c"/>
+
+
+</LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pH"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+            <ImageView
+                android:layout_marginTop="-10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/watericon"
+                android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="6.8"
+                  android:gravity="center"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                  android:textStyle="bold"
+                  android:textSize="35dp"
+                  android:id="@+id/textphvalue"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poor"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/textphremark"/>
+
+                <TextView
+                    android:textColor="#7c7c7c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(Standard  7.2 - 8.0 )"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textSize="15dp" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/watericon"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chlorine"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1.3"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textStyle="bold"
+                    android:textSize="35dp"
+                    android:id="@+id/textclvalue"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Satisfactory"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/textclremark"/>
+
+                <TextView
+                    android:textColor="#7c7c7c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(Standard  1.0 - 3.0 ppm )"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textSize="15dp" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="10dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="25dp">
+
+            <ImageView
+                android:id="@+id/analytics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/analyticsicon"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="-15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analytics"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:textColor="#7c7c7c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Updated :"
+                android:layout_marginLeft="10dp"/>
+
+
+
+            <TextView
+                android:textColor="#7c7c7c"
+                android:id="@+id/textdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:layout_marginLeft="5dp"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:textColor="#7c7c7c"
+                android:id="@+id/texttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:layout_marginLeft="5dp"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hub ID:"
+                android:layout_marginLeft="40dp" />
+
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/texthubid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hubid"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>
