@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -16,13 +15,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.shivam.probussense.Adaptor.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.Classes.swimmingpools;
 import com.shivam.probussense.R;
@@ -40,6 +43,8 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
 
     String organizationNamestr;
 
+    RecyclerView recyclerView;
+
     public static ArrayList<swimmingpools> pools=new ArrayList<>();
     TextView organizationName;
 
@@ -51,15 +56,18 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
     private PagerAdapter mPagerAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horizontal);
 
+
         organizationName=findViewById(R.id.organizationName);
 
         new GetContacts().execute();
+
+
+        // Attach the view pager to the tab strip
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -185,6 +193,7 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
         public int getCount() {
             return NUM_PAGES;
         }
+
     }
 
 
@@ -201,6 +210,7 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
 
         @Override
         protected Void doInBackground(Void... arg0) {
+            pools.clear();
             HttpHandler sh = new HttpHandler();
 
             String user_id="";
@@ -247,10 +257,26 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             organizationName.setText(organizationNamestr);
+
+
+if(pools.size()<3){
             NUM_PAGES = pools.size();
             mPager = (ViewPager) findViewById(R.id.pager);
+            mPager.setVisibility(View.VISIBLE);
             mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
             mPager.setAdapter(mPagerAdapter);
+            Toast.makeText(horizontal.this, "Slide Horizontally ", Toast.LENGTH_SHORT).show();
+        }
+        else{
+               recyclerView=findViewById(R.id.recycleview);
+               recyclerView.setVisibility(View.VISIBLE);
+                Adaptor adaptor=new Adaptor(horizontal.this,pools);
+                recyclerView.setLayoutManager(new LinearLayoutManager(horizontal.this));
+                recyclerView.setAdapter(adaptor);
+        }
+
+
+
         }
 
     }

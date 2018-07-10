@@ -6,10 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Charts">
 
+
+
     <com.anychart.anychart.AnyChartView
         android:id="@+id/any_chart_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_marginRight="85dp"/>
+
+
+    <TextView
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="right"
+        android:layout_marginRight="82dp"/>
+
+
+    <LinearLayout
+        android:layout_gravity="right"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DETAILED ANALYSIS"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/btnweek1"
+            android:textSize="15dp"
+            android:textColor="#fff"
+            android:text="WEEK 1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtn"/>
+
+        <Button
+            android:textSize="15dp"
+            android:textColor="#fff"
+            android:id="@+id/btnweek2"
+            android:text="WEEK 2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtn"/>
+
+        <Button
+            android:id="@+id/btnweek3"
+            android:textSize="15dp"
+            android:textColor="#fff"
+            android:text="WEEK 3"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtn"/>
+
+        <Button
+            android:id="@+id/btnweek4"
+            android:textSize="15dp"
+            android:textColor="#fff"
+            android:text="WEEK 4"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundbtn"/>
+
+
+
+    </LinearLayout>
 
 </FrameLayout>
