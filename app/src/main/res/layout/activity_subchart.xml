@@ -6,9 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Subchart">
 
-    <com.anychart.anychart.AnyChartView
-        android:id="@+id/subany_chart_view"
+    <com.github.mikephil.charting.charts.BarChart
+        android:visibility="gone"
+        android:id="@+id/subchart1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        />
 
 </android.support.constraint.ConstraintLayout>

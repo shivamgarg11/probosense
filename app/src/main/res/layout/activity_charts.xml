@@ -8,11 +8,14 @@
 
 
 
-    <com.anychart.anychart.AnyChartView
-        android:id="@+id/any_chart_view"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="85dp"/>
+        android:layout_marginRight="90dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        />
 
 
     <TextView
@@ -36,14 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DETAILED ANALYSIS"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/btnweek1"
             android:textSize="15dp"
             android:textColor="#fff"
             android:text="WEEK 1"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="match_parent"
@@ -55,7 +58,7 @@
             android:textColor="#fff"
             android:id="@+id/btnweek2"
             android:text="WEEK 2"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="match_parent"
@@ -67,7 +70,7 @@
             android:textSize="15dp"
             android:textColor="#fff"
             android:text="WEEK 3"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="match_parent"
@@ -79,7 +82,7 @@
             android:textSize="15dp"
             android:textColor="#fff"
             android:text="WEEK 4"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="match_parent"

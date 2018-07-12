@@ -1,10 +1,12 @@
 package com.shivam.probussense.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.anychart.anychart.AnyChart;
 import com.anychart.anychart.AnyChartView;
@@ -16,6 +18,10 @@ import com.anychart.anychart.HoverMode;
 import com.anychart.anychart.Position;
 import com.anychart.anychart.TooltipPositionMode;
 import com.anychart.anychart.ValueDataEntry;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
 
@@ -27,6 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Subchart extends AppCompatActivity {
+
+    BarChart chart ;
+    ArrayList<BarEntry> BARENTRY ;
+    ArrayList<String> BarEntryLabels ;
+    BarDataSet Bardataset ;
+    BarData BARDATA ;
+
+
 
     String hubid;
     int []weeks1=new int[7];
@@ -73,14 +87,12 @@ public class Subchart extends AppCompatActivity {
         }
 
 
-
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
 
-
-            String url = "http://water.probussense.com/application/chart?asset_id="+hubid;
+            String url = "http://water.probussense.com/application/chart?asset_id=" + hubid;
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url);
 
@@ -89,50 +101,50 @@ public class Subchart extends AppCompatActivity {
 
                 JSONArray array1 = jsonObj.getJSONArray(type);
 
-                    for(int j=0;j<array1.length();j++){
+                for (int j = 0; j < array1.length(); j++) {
 
-                        JSONObject object=array1.getJSONObject(j);
+                    JSONObject object = array1.getJSONObject(j);
 
-                        String dt=object.getString("dt");
-
-
-
-                        int val=Integer.valueOf(dt.substring(8,10));
+                    String dt = object.getString("dt");
 
 
-                        String time=object.getString("duration");
+                    int val = Integer.valueOf(dt.substring(8, 10));
 
 
-                        switch ((val%7)){
-                            case 0: weeks1[0]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
+                    String time = object.getString("duration");
 
-                            case 1: weeks1[1]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
 
-                            case 2:weeks1[2]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
+                    switch ((val % 7)) {
+                        case 0:
+                            weeks1[0] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
 
-                            case 3:weeks1[3]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
+                        case 1:
+                            weeks1[1] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
 
-                            case 4:weeks1[4]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
+                        case 2:
+                            weeks1[2] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
 
-                            case 5:weeks1[5]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
+                        case 3:
+                            weeks1[3] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
 
-                            case 6:weeks1[6]+=Integer.valueOf(time.substring(0,time.length()-7));
-                                break;
-                        }
+                        case 4:
+                            weeks1[4] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
 
+                        case 5:
+                            weeks1[5] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
+
+                        case 6:
+                            weeks1[6] += Integer.valueOf(time.substring(0, time.length() - 7));
+                            break;
                     }
 
-
-
-
-
-
+                }
 
 
             } catch (JSONException e) {
@@ -147,52 +159,57 @@ public class Subchart extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            AnyChartView anyChartView = findViewById(R.id.subany_chart_view);
-            Cartesian cartesian = AnyChart.column();
 
-            List<DataEntry> data = new ArrayList<>();
+            chart = (BarChart) findViewById(R.id.subchart1);
+            chart.setVisibility(View.VISIBLE);
 
+            BARENTRY = new ArrayList<>();
 
+            BarEntryLabels = new ArrayList<String>();
 
-                data.clear();
-                data.add(new ValueDataEntry("DAY 1", weeks1[0]));
-                data.add(new ValueDataEntry("DAY 2", weeks1[1]));
-                data.add(new ValueDataEntry("DAY 3", weeks1[2]));
-                data.add(new ValueDataEntry("DAY 4", weeks1[3]));
-                data.add(new ValueDataEntry("DAY 5", weeks1[4]));
-                data.add(new ValueDataEntry("DAY 6", weeks1[5]));
-                data.add(new ValueDataEntry("DAY 7", weeks1[6]));
-                cartesian.getXAxis().setTitle("DAYS");
+            AddValuesToBARENTRY();
 
+            AddValuesToBarEntryLabels();
 
+            Bardataset = new BarDataSet(BARENTRY, "Projects");
 
-            CartesianSeriesColumn column = cartesian.column(data);
+            BARDATA = new BarData(BarEntryLabels, Bardataset);
 
-            column.getTooltip()
-                    .setTitleFormat("{%X}")
-                    .setPosition(Position.CENTER_BOTTOM)
-                    .setAnchor(EnumsAnchor.CENTER_BOTTOM)
-                    .setOffsetX(0d)
-                    .setOffsetY(5d)
-                    .setFormat("{%Value}{groupsSeparator: }");
+            Bardataset.setColor(Color.rgb(19, 138, 176));
 
-            cartesian.setAnimation(true);
-            cartesian.setTitle("");
+            chart.setData(BARDATA);
 
-            cartesian.getYScale().setMinimum(0d);
-
-            cartesian.getYAxis().getLabels().setFormat("{%Value}{groupsSeparator: }");
-
-            cartesian.getTooltip().setPositionMode(TooltipPositionMode.POINT);
-            cartesian.getInteractivity().setHoverMode(HoverMode.BY_X);
-
-
-            cartesian.getYAxis().setTitle("DURATION in MINUTE");
-
-                anyChartView.setChart(cartesian);}
+            chart.animateY(1500);
 
 
         }
+
+        public void AddValuesToBARENTRY() {
+
+            BARENTRY.add(new BarEntry(weeks1[0], 0));
+            BARENTRY.add(new BarEntry(weeks1[1], 1));
+            BARENTRY.add(new BarEntry(weeks1[2], 2));
+            BARENTRY.add(new BarEntry(weeks1[3], 3));
+            BARENTRY.add(new BarEntry(weeks1[4], 4));
+            BARENTRY.add(new BarEntry(weeks1[5], 5));
+            BARENTRY.add(new BarEntry(weeks1[6], 6));
+
+        }
+
+        public void AddValuesToBarEntryLabels() {
+
+            BarEntryLabels.add("DAY 1");
+            BarEntryLabels.add("DAY 2");
+            BarEntryLabels.add("DAY 3");
+            BarEntryLabels.add("DAY 4");
+            BarEntryLabels.add("DAY 5");
+            BarEntryLabels.add("DAY 6");
+            BarEntryLabels.add("DAY 7");
+
+
+        }
+
+    }
 
 
 }

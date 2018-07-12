@@ -1,9 +1,14 @@
 package com.shivam.probussense.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.shivam.probussense.R;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -32,6 +37,12 @@ import java.util.List;
 
 public class Charts extends AppCompatActivity {
 
+
+    BarChart chart ;
+    ArrayList<BarEntry> BARENTRY ;
+    ArrayList<String> BarEntryLabels ;
+    BarDataSet Bardataset ;
+    BarData BARDATA ;
 
     double hubid;
     int []weeks=new int[5];
@@ -92,7 +103,7 @@ public class Charts extends AppCompatActivity {
                 Intent i=new Intent(Charts.this,Subchart.class);
                 i.putExtra("assert_id","4"+hubid);
                 startActivity(i);
-                finish();
+
             }
         });
 
@@ -158,45 +169,49 @@ public class Charts extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            AnyChartView anyChartView = findViewById(R.id.any_chart_view);
-
-            Cartesian cartesian = AnyChart.column();
-
-            List<DataEntry> data = new ArrayList<>();
 
 
-                data.clear();
-                data.add(new ValueDataEntry("WEEK 1", weeks[0]));
-                data.add(new ValueDataEntry("WEEK 2", weeks[1]));
-                data.add(new ValueDataEntry("WEEK 3", weeks[2]));
-                data.add(new ValueDataEntry("WEEK 4", weeks[3]));
-                cartesian.getXAxis().setTitle("WEEK");
+            chart = (BarChart) findViewById(R.id.chart1);
+            chart.setVisibility(View.VISIBLE);
+
+            BARENTRY = new ArrayList<>();
+
+            BarEntryLabels = new ArrayList<String>();
+
+            AddValuesToBARENTRY();
+
+            AddValuesToBarEntryLabels();
+
+            Bardataset = new BarDataSet(BARENTRY, "Projects");
+
+            BARDATA = new BarData(BarEntryLabels, Bardataset);
+
+            Bardataset.setColor(Color.rgb(19,138,176));
+
+            chart.setData(BARDATA);
+
+            chart.animateY(3000);
+
+        }
+
+        public void AddValuesToBARENTRY(){
+
+            BARENTRY.add(new BarEntry(weeks[0], 0));
+            BARENTRY.add(new BarEntry(weeks[1], 1));
+            BARENTRY.add(new BarEntry(weeks[2], 2));
+            BARENTRY.add(new BarEntry(weeks[3], 3));
+
+        }
+
+        public void AddValuesToBarEntryLabels(){
+
+            BarEntryLabels.add("WEEK 1");
+            BarEntryLabels.add("WEEK 2");
+            BarEntryLabels.add("WEEK 3");
+            BarEntryLabels.add("WEEK 4");
 
 
-            CartesianSeriesColumn column = cartesian.column(data);
-
-            column.getTooltip()
-                    .setTitleFormat("{%X}")
-                    .setPosition(Position.CENTER_BOTTOM)
-                    .setAnchor(EnumsAnchor.CENTER_BOTTOM)
-                    .setOffsetX(0d)
-                    .setOffsetY(5d)
-                    .setFormat("{%Value}{groupsSeparator: }");
-
-            cartesian.setAnimation(true);
-            cartesian.setTitle("");
-
-            cartesian.getYScale().setMinimum(0d);
-
-            cartesian.getYAxis().getLabels().setFormat("{%Value}{groupsSeparator: }");
-
-            cartesian.getTooltip().setPositionMode(TooltipPositionMode.POINT);
-            cartesian.getInteractivity().setHoverMode(HoverMode.BY_X);
-
-
-            cartesian.getYAxis().setTitle("NUMBER");
-
-            anyChartView.setChart(cartesian);}
+        }
 
         }
 
