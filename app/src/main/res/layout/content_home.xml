@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/organizationName"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -58,9 +58,9 @@
 
     <TextView
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimaryDark"
+        android:background="#31bce7"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:text=""
         android:gravity="center"
         android:textStyle="bold"

@@ -1,9 +1,11 @@
 package com.shivam.probussense.Activities;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,7 @@ import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
 import com.shivam.probussense.horizontalswip.horizontal;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,13 +101,23 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+
+
+
+
+
+
+
+
+
+
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            if(error) {
+           if(error) {
                 Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                 userid.setText("");
                 password.setText("");
@@ -114,6 +127,7 @@ public class Login extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("probussense", MODE_PRIVATE).edit();
                 editor.putString("user_id", USERID);
                 editor.apply();
+
 
                 Intent i=new Intent(Login.this,horizontal.class);
                 startActivity(i);

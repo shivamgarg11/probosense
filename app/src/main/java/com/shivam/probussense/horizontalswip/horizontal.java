@@ -1,6 +1,7 @@
 package com.shivam.probussense.horizontalswip;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,7 @@ import com.shivam.probussense.Adaptor.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.Classes.swimmingpools;
 import com.shivam.probussense.R;
+import com.shivam.probussense.Services.Mynotifyservice;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +67,9 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
         organizationName=findViewById(R.id.organizationName);
 
         new GetContacts().execute();
+
+        Intent i=new Intent(horizontal.this, Mynotifyservice.class);
+        startService(i);
 
 
         // Attach the view pager to the tab strip

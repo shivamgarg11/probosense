@@ -3,6 +3,7 @@
     package="com.shivam.probussense">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:largeHeap="true"
@@ -26,6 +27,23 @@
         <activity android:name=".Activities.Tablesrecycle" />
         <activity android:name=".Activities.Subchart"
             android:screenOrientation="landscape"></activity>
+
+        <service android:name=".Services.Mynotifyservice"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false"/>
+
+        <receiver
+            android:name=".receiver.Myreceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
     </application>
 
 </manifest>

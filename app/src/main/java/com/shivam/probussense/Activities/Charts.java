@@ -15,16 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.anychart.anychart.AnyChart;
-import com.anychart.anychart.AnyChartView;
-import com.anychart.anychart.Cartesian;
-import com.anychart.anychart.CartesianSeriesColumn;
-import com.anychart.anychart.DataEntry;
-import com.anychart.anychart.EnumsAnchor;
-import com.anychart.anychart.HoverMode;
-import com.anychart.anychart.Position;
-import com.anychart.anychart.TooltipPositionMode;
-import com.anychart.anychart.ValueDataEntry;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.horizontalswip.horizontal;
 
