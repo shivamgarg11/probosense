@@ -25,7 +25,7 @@ public class tableswipFragment extends Fragment {
 swimmingpools pool;
 Context context;
 
-    TextView Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
+    TextView companyname,Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
     ImageView analytics;
 
     public tableswipFragment() {
@@ -46,7 +46,7 @@ Context context;
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tableswip, container, false);
 
-
+companyname=rootView.findViewById(R.id.companyname);
         Swimmingpoolname = rootView.findViewById(R.id.fragSwimmingpoolname);
         temp = rootView.findViewById(R.id.fragtexttemp);
         phvalue = rootView.findViewById(R.id.fragtextphvalue);
@@ -60,7 +60,7 @@ Context context;
         analytics=rootView.findViewById(R.id.fraganalytics);
 
 
-
+companyname.setText(pool.getOrganizationname());
 
         Swimmingpoolname.setText(pool.getName());
         phvalue.setText(String.valueOf(pool.getPh()));

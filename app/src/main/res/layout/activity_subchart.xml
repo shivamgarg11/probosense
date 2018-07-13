@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,22 @@
     tools:context=".Activities.Subchart">
 
     <com.github.mikephil.charting.charts.BarChart
-        android:visibility="gone"
+       android:visibility="gone"
         android:id="@+id/subchart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="-35dp"
+        android:layout_marginLeft="20dp"
         />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/subchartyaxis"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:text="N\nU\nM\nB\nE\nR"
+        android:gravity="center"/>
+
+</FrameLayout>

@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.horizontalswip.horizontal;
@@ -37,7 +38,7 @@ public class Charts extends AppCompatActivity {
     double hubid;
     int []weeks=new int[5];
 
-
+TextView chartyaxis;
     Button week1,week2,week3,week4;
 
     @Override
@@ -54,6 +55,8 @@ public class Charts extends AppCompatActivity {
         week2=findViewById(R.id.btnweek2);
         week3=findViewById(R.id.btnweek3);
         week4=findViewById(R.id.btnweek4);
+
+        chartyaxis=findViewById(R.id.yaxis);
 
         new GetContacts().execute();
 
@@ -163,6 +166,7 @@ public class Charts extends AppCompatActivity {
 
             chart = (BarChart) findViewById(R.id.chart1);
             chart.setVisibility(View.VISIBLE);
+            chartyaxis.setVisibility(View.VISIBLE);
 
             BARENTRY = new ArrayList<>();
 

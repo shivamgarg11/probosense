@@ -2,6 +2,7 @@ package com.shivam.probussense.Classes;
 
 public class swimmingpools {
 
+    String organizationname;
     String Name;
     String address;
     double Ph;
@@ -11,7 +12,8 @@ public class swimmingpools {
     double hubid;
 
 
-    public swimmingpools(String name, String address, double ph, double chlorine, double temp, String datetime, double hubid) {
+    public swimmingpools(String organizationname,String name, String address, double ph, double chlorine, double temp, String datetime, double hubid) {
+        this.organizationname=organizationname;
         Name = name;
         this.address = address;
         Ph = ph;
@@ -19,6 +21,10 @@ public class swimmingpools {
         this.temp = temp;
         this.datetime = datetime;
         this.hubid = hubid;
+    }
+
+    public String getOrganizationname() {
+        return organizationname;
     }
 
     public double getTemp() {

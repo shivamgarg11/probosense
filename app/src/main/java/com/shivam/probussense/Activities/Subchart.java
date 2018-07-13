@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.anychart.anychart.AnyChart;
 import com.anychart.anychart.AnyChartView;
@@ -40,7 +41,7 @@ public class Subchart extends AppCompatActivity {
     BarDataSet Bardataset ;
     BarData BARDATA ;
 
-
+TextView subchartyaxis;
 
     String hubid;
     int []weeks1=new int[7];
@@ -51,6 +52,8 @@ public class Subchart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subchart);
+
+        subchartyaxis=findViewById(R.id.subchartyaxis);
 
         hubid=getIntent().getStringExtra("assert_id");
 
@@ -162,6 +165,8 @@ public class Subchart extends AppCompatActivity {
 
             chart = (BarChart) findViewById(R.id.subchart1);
             chart.setVisibility(View.VISIBLE);
+
+            subchartyaxis.setVisibility(View.VISIBLE);
 
             BARENTRY = new ArrayList<>();
 

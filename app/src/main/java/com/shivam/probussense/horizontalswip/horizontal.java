@@ -242,7 +242,7 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
                         JSONObject assests=object.getJSONObject("asset");
                         JSONObject user=object.getJSONObject("user");
 
-                        pools.add(new swimmingpools(assests.getString("calling_name"),assests.getString("address"),object.getDouble("ph"),object.getDouble("cl"),object.getDouble("tp"),object.getString("dt"),assests.getDouble("asset_id")));
+                        pools.add(new swimmingpools(user.getString("organisation"),assests.getString("calling_name"),assests.getString("address"),object.getDouble("ph"),object.getDouble("cl"),object.getDouble("tp"),object.getString("dt"),assests.getDouble("asset_id")));
                         organizationNamestr=user.getString("organisation");
                     }
 

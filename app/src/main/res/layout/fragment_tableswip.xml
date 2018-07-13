@@ -8,11 +8,23 @@
 
 
     <LinearLayout
+        android:layout_marginTop="-5dp"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fff">
+
+        <TextView
+            android:id="@+id/companyname"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#fff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:padding="6dp" />
 
 
         <LinearLayout
@@ -28,18 +40,18 @@
                 android:text="Location:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
+                android:textColor="#000"
                 android:id="@+id/fragSwimmingpoolname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:hint="NAME"
                 android:gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="22dp"/>
 
             <TextView
                 android:id="@+id/fragtexttemp"
@@ -280,14 +292,14 @@
 
 
             <TextView
-                android:textColor="#000"
+                android:textColor="#7c7c7c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hub ID:"
                 android:layout_marginLeft="40dp" />
 
             <TextView
-                android:textColor="#000"
+                android:textColor="#7c7c7c"
                 android:id="@+id/fragtexthubid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

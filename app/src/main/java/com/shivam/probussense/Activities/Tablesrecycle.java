@@ -19,7 +19,7 @@ public class Tablesrecycle extends AppCompatActivity {
 
     swimmingpools pool;
 
-    TextView Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
+    TextView companyname,Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
     ImageView analytics;
 
 
@@ -37,6 +37,7 @@ public class Tablesrecycle extends AppCompatActivity {
 
             pool= horizontal.pools.get(i);
 
+            companyname=findViewById(R.id.companyname);
             Swimmingpoolname = findViewById(R.id.fragSwimmingpoolname);
             temp = findViewById(R.id.fragtexttemp);
             phvalue = findViewById(R.id.fragtextphvalue);
@@ -49,7 +50,7 @@ public class Tablesrecycle extends AppCompatActivity {
 
             analytics = findViewById(R.id.fraganalytics);
 
-
+companyname.setText(pool.getOrganizationname());
             Swimmingpoolname.setText(pool.getName());
             phvalue.setText(String.valueOf(pool.getPh()));
             clvalue.setText(String.valueOf(pool.getChlorine()));
