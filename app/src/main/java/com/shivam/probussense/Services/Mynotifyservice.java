@@ -20,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.ConnectException;
+
 public class Mynotifyservice extends Service {
 
 String user_id;
@@ -116,7 +118,6 @@ new GetContacts().execute();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
 
             return null;

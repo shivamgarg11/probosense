@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.shivam.probussense.Classes.HttpHandler;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
+    ProgressBar progressBarlogin;
     TextInputEditText userid,password;
     Button login;
 
@@ -41,6 +43,7 @@ public class Login extends AppCompatActivity {
         password=findViewById(R.id.editpassword);
         login=findViewById(R.id.btnlogin);
 
+        progressBarlogin=findViewById(R.id.progresslogin);
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +52,7 @@ public class Login extends AppCompatActivity {
                 useridstr=userid.getText().toString();
                 passwordstr=password.getText().toString();
                 new GetContacts().execute();
+                progressBarlogin.setVisibility(View.VISIBLE);
             }
         });
 
@@ -128,6 +132,7 @@ public class Login extends AppCompatActivity {
                 editor.putString("user_id", USERID);
                 editor.apply();
 
+               progressBarlogin.setVisibility(View.GONE);
 
                 Intent i=new Intent(Login.this,horizontal.class);
                 startActivity(i);

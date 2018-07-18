@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
 
     private PagerAdapter mPagerAdapter;
 
+    ProgressBar progressBartable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
 
 
         organizationName=findViewById(R.id.organizationName);
+
+        progressBartable=findViewById(R.id.progressbartable);
 
         new GetContacts().execute();
 
@@ -260,6 +265,9 @@ public class horizontal extends AppCompatActivity implements NavigationView.OnNa
 
         @Override
         protected void onPostExecute(Void result) {
+
+            progressBartable.setVisibility(View.GONE);
+
             super.onPostExecute(result);
             organizationName.setText(organizationNamestr);
 

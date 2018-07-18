@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shivam.probussense.Activities.Charts;
@@ -60,7 +61,8 @@ companyname=rootView.findViewById(R.id.companyname);
         analytics=rootView.findViewById(R.id.fraganalytics);
 
 
-companyname.setText(pool.getOrganizationname());
+
+       companyname.setText(pool.getOrganizationname());
 
         Swimmingpoolname.setText(pool.getName());
         phvalue.setText(String.valueOf(pool.getPh()));

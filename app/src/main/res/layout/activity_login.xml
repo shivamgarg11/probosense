@@ -99,8 +99,15 @@
 
 
 
-
     </LinearLayout>
 
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progresslogin"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>
