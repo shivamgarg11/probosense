@@ -4,27 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Login"
+    tools:context=".Activities.login"
     android:background="#fff">
 
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/logo"
-    android:layout_gravity="top|center"
-    android:layout_marginTop="30dp"/>
-
-
-
-
-        <LinearLayout
-        android:padding="50dp"
+    <LinearLayout
+       android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:orientation="vertical">
 
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="ABSOLUTE"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
+            style="@style/TextAppearance.AppCompat.Headline"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_gravity="top|center" />
 
 
         <LinearLayout
@@ -76,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="PASSWORD"
-                   android:inputType="textPassword"
+                    android:inputType="textPassword"
                     />
 
             </android.support.design.widget.TextInputLayout>

@@ -2,35 +2,29 @@ package com.shivam.probussense.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.shivam.probussense.R;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.shivam.probussense.Classes.HttpHandler;
-import com.shivam.probussense.horizontalswip.horizontal;
+import com.shivam.probussense.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Charts extends AppCompatActivity {
-
 
     //
     BarChart chartsub ;
@@ -59,6 +53,8 @@ public class Charts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
+
+
 
         hubid=getIntent().getDoubleExtra("assert_id",0);
 
@@ -124,7 +120,7 @@ public class Charts extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i=new Intent(Charts.this,horizontal.class);
+        Intent i=new Intent(Charts.this,Home.class);
         startActivity(i);
         finish();
 
@@ -157,16 +153,16 @@ public class Charts extends AppCompatActivity {
 
 
 
-    for (int i = 0; i < jsonObj.length(); i++) {
-        JSONArray array1 = jsonObj.getJSONArray(i);
-        weeks[i] = array1.length();
+                for (int i = 0; i < jsonObj.length(); i++) {
+                    JSONArray array1 = jsonObj.getJSONArray(i);
+                    weeks[i] = array1.length();
 
 
 
 
-}
+                }
 
-} catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -243,7 +239,7 @@ public class Charts extends AppCompatActivity {
 
         }
 
-        }
+    }
 
 
 
@@ -414,7 +410,4 @@ public class Charts extends AppCompatActivity {
         }
 
     }
-
-
-
 }

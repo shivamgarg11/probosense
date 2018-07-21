@@ -10,8 +10,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
@@ -20,12 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.ConnectException;
-
 public class Mynotifyservice extends Service {
 
-String user_id;
-int flagsonstart,startidonstart;
+    String user_id;
+    int flagsonstart,startidonstart;
 
     @Nullable
     @Override
@@ -59,7 +56,7 @@ int flagsonstart,startidonstart;
 
 
             public void run() {
-new GetContacts().execute();
+                new GetContacts().execute();
                 handler.postDelayed(this, 180000);
             }
         };
@@ -127,24 +124,24 @@ new GetContacts().execute();
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-if(!msgboolean){
-    NotificationCompat.Builder mBuilder =
-            new NotificationCompat.Builder(Mynotifyservice.this)
-                    .setSmallIcon(R.drawable.logo)
-                    .setContentTitle("WARNING")
-                    .setColor(Color.RED)
-                    .setContentText("Pools are not safe");
+            if(!msgboolean){
+                NotificationCompat.Builder mBuilder =
+                        new NotificationCompat.Builder(Mynotifyservice.this)
+                                .setSmallIcon(R.drawable.logo)
+                                .setContentTitle("WARNING")
+                                .setColor(Color.RED)
+                                .setContentText("Pools are not safe");
 
 
-    // Gets an instance of the NotificationManager service//
+                // Gets an instance of the NotificationManager service//
 
-    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Mynotifyservice.this.NOTIFICATION_SERVICE);
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Mynotifyservice.this.NOTIFICATION_SERVICE);
 
-    mNotificationManager.notify(001, mBuilder.build());
+                mNotificationManager.notify(001, mBuilder.build());
 
 
 
-}
+            }
         }
 
 

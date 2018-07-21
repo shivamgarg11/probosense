@@ -1,6 +1,5 @@
 package com.shivam.probussense.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -11,22 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shivam.probussense.Classes.swimmingpools;
+import com.shivam.probussense.Fragments.Homefragment;
 import com.shivam.probussense.R;
-import com.shivam.probussense.horizontalswip.horizontal;
 
 public class Tablesrecycle extends AppCompatActivity {
-
 
     swimmingpools pool;
 
     TextView companyname,Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
     ImageView analytics;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tableswip);
+        setContentView(R.layout.activity_tablesrecycle);
+
 
         int i=getIntent().getIntExtra("position",-1);
 
@@ -35,7 +33,7 @@ public class Tablesrecycle extends AppCompatActivity {
             onBackPressed();
         }else {
 
-            pool= horizontal.pools.get(i);
+            pool= Homefragment.pools.get(i);
 
             companyname=findViewById(R.id.companyname);
             Swimmingpoolname = findViewById(R.id.fragSwimmingpoolname);
@@ -50,7 +48,7 @@ public class Tablesrecycle extends AppCompatActivity {
 
             analytics = findViewById(R.id.fraganalytics);
 
-companyname.setText(pool.getOrganizationname());
+            companyname.setText(pool.getOrganizationname());
             Swimmingpoolname.setText(pool.getName());
             phvalue.setText(String.valueOf(pool.getPh()));
             clvalue.setText(String.valueOf(pool.getChlorine()));

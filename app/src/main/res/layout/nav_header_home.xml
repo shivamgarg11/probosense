@@ -17,9 +17,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-       android:src="@drawable/logo"
+        android:paddingTop="25dp"
+        android:src="@drawable/logo"
         android:layout_gravity="center"/>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:text="ABSOLUTE"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:gravity="center"
+        style="@style/TextAppearance.AppCompat.Headline"/>
 </FrameLayout>

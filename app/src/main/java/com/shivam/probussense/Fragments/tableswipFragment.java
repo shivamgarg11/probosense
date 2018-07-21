@@ -1,4 +1,4 @@
-package com.shivam.probussense.horizontalswip;
+package com.shivam.probussense.Fragments;
 
 
 import android.annotation.SuppressLint;
@@ -11,20 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shivam.probussense.Activities.Charts;
 import com.shivam.probussense.Classes.swimmingpools;
 import com.shivam.probussense.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class tableswipFragment extends Fragment {
 
-swimmingpools pool;
-Context context;
+    swimmingpools pool;
+    Context context;
 
     TextView companyname,Swimmingpoolname,temp, phvalue,remarkph,clvalue,remarkcl,date,time,hubid;
     ImageView analytics;
@@ -47,7 +47,7 @@ Context context;
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tableswip, container, false);
 
-companyname=rootView.findViewById(R.id.companyname);
+        companyname=rootView.findViewById(R.id.companyname);
         Swimmingpoolname = rootView.findViewById(R.id.fragSwimmingpoolname);
         temp = rootView.findViewById(R.id.fragtexttemp);
         phvalue = rootView.findViewById(R.id.fragtextphvalue);
@@ -62,13 +62,13 @@ companyname=rootView.findViewById(R.id.companyname);
 
 
 
-       companyname.setText(pool.getOrganizationname());
+        companyname.setText(pool.getOrganizationname());
 
         Swimmingpoolname.setText(pool.getName());
         phvalue.setText(String.valueOf(pool.getPh()));
         clvalue.setText(String.valueOf(pool.getChlorine()));
 
-       temp.setText(String.valueOf("T="+pool.getTemp()+"C"));
+        temp.setText(String.valueOf("T="+pool.getTemp()+"C"));
         hubid.setText(String.valueOf(pool.getHubid()));
         date.setText(pool.getDatetime().substring(0,10));
         time.setText(pool.getDatetime().substring(11,16));
@@ -112,5 +112,4 @@ companyname=rootView.findViewById(R.id.companyname);
 
         return rootView;
     }
-
 }

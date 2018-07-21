@@ -1,11 +1,9 @@
 package com.shivam.probussense.Activities;
 
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,28 +14,28 @@ import android.widget.Toast;
 
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
-import com.shivam.probussense.horizontalswip.horizontal;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Login extends AppCompatActivity {
+public class login extends AppCompatActivity {
 
     ProgressBar progressBarlogin;
     TextInputEditText userid,password;
     Button login;
 
-    private String TAG = Login.class.getSimpleName();
+    private String TAG = login.class.getSimpleName();
     public  static String USERID;
     String useridstr,passwordstr;
     boolean error;
     String msg;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
+
 
         userid=findViewById(R.id.edituserid);
         password=findViewById(R.id.editpassword);
@@ -80,7 +78,7 @@ public class Login extends AppCompatActivity {
 
 
 
-           String url = "http://water.probussense.com/application/login?username="+useridstr+"&password="+passwordstr;
+            String url = "http://water.probussense.com/application/login?username="+useridstr+"&password="+passwordstr;
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url);
 
@@ -89,13 +87,13 @@ public class Login extends AppCompatActivity {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
                 //Log.e(TAG, "Response from json: " + jsonObj+"\n");
-                 error=jsonObj.getBoolean("error");
+                error=jsonObj.getBoolean("error");
                 if(!error){
-                JSONObject data = jsonObj.getJSONObject("data");
-                USERID=data.getString("user_id");
+                    JSONObject data = jsonObj.getJSONObject("data");
+                    USERID=data.getString("user_id");
 
                 }else {
-                     msg=jsonObj.getString("msg");
+                    msg=jsonObj.getString("msg");
 
                 }
 
@@ -121,20 +119,21 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-           if(error) {
-                Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+            if(error) {
+                Toast.makeText(login.this, msg, Toast.LENGTH_SHORT).show();
                 userid.setText("");
                 password.setText("");
                 useridstr = "";
                 passwordstr = "";
+                progressBarlogin.setVisibility(View.GONE);
             }else{
                 SharedPreferences.Editor editor = getSharedPreferences("probussense", MODE_PRIVATE).edit();
                 editor.putString("user_id", USERID);
                 editor.apply();
 
-               progressBarlogin.setVisibility(View.GONE);
+                progressBarlogin.setVisibility(View.GONE);
 
-                Intent i=new Intent(Login.this,horizontal.class);
+                Intent i=new Intent(login.this,Home.class);
                 startActivity(i);
                 finish();
             }

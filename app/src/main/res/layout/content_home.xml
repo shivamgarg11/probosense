@@ -4,67 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".horizontalswip.horizontal"
-    android:background="#fff">
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-
-
-        <TextView
-            android:id="@+id/organizationName"
-            android:background="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:padding="10dp" />
-
-        <ProgressBar
-            android:visibility="visible"
-            android:id="@+id/progressbartable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-
-
-        <android.support.v4.view.ViewPager
-            android:visibility="gone"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
-            android:id="@+id/recycleview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
-
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_gravity="bottom"
-        android:background="#31bce7"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text=""
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:padding="10dp"/>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.Home"
+    tools:showIn="@layout/app_bar_home"
+    android:id="@+id/frame">
 
 
 </FrameLayout>
