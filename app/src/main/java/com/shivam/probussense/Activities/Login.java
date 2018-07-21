@@ -55,7 +55,14 @@ public class login extends AppCompatActivity {
         });
 
 
+        SharedPreferences prefs = getSharedPreferences("probussense", MODE_PRIVATE);
+        Boolean login = prefs.getBoolean("login", false);//"No name defined" is the default value.
 
+        if(login){
+    Intent i=new Intent(login.this,Home.class);
+    startActivity(i);
+    finish();
+}
 
 
     }
@@ -129,6 +136,7 @@ public class login extends AppCompatActivity {
             }else{
                 SharedPreferences.Editor editor = getSharedPreferences("probussense", MODE_PRIVATE).edit();
                 editor.putString("user_id", USERID);
+                editor.putBoolean("login",true);
                 editor.apply();
 
                 progressBarlogin.setVisibility(View.GONE);

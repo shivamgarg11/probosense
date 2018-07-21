@@ -1,6 +1,7 @@
 package com.shivam.probussense.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -83,7 +84,13 @@ public class Home extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.logout) {
-            return true;
+            SharedPreferences.Editor editor = getSharedPreferences("probussense", MODE_PRIVATE).edit();
+            editor.putBoolean("login",false);
+            editor.apply();
+
+            Intent i=new Intent(Home.this,login.class);
+            startActivity(i);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

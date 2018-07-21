@@ -24,6 +24,7 @@
             android:name=".Activities.Home"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"/>
+
         <activity android:name=".Activities.Charts"
             android:screenOrientation="landscape" />
 
