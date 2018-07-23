@@ -3,7 +3,10 @@ package com.shivam.probussense.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.shivam.probussense.Activities.login;
 import com.shivam.probussense.Adaptors.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.Classes.swimmingpools;
@@ -83,8 +87,14 @@ public class Homefragment extends Fragment {
 
         progressBartable=rootview.findViewById(R.id.progressbartable);
 
-        new GetContacts().execute();
+        ConnectivityManager connectivityManager =(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null) {
 
+            new GetContacts().execute();
+        }else{
+            Toast.makeText(context, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+        }
 
 
 
@@ -128,41 +138,50 @@ public class Homefragment extends Fragment {
             pools.clear();
             HttpHandler sh = new HttpHandler();
 
-            String user_id="";
+            ConnectivityManager connectivityManager =(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null) {
 
-            SharedPreferences prefs = context.getSharedPreferences("probussense", context.MODE_PRIVATE);
-            user_id = prefs.getString("user_id", "");//"No name defined" is the default value.
+
+                String user_id = "";
+
+                SharedPreferences prefs = context.getSharedPreferences("probussense", context.MODE_PRIVATE);
+                user_id = prefs.getString("user_id", "");//"No name defined" is the default value.
 
 
-            Log.e(TAG, "Response from sharepreferences: TABLES:: " + user_id);
+                Log.e(TAG, "Response from sharepreferences: TABLES:: " + user_id);
 
-            String url = "http://water.probussense.com/application/assetdata?user_id="+user_id;
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+                String url = "http://water.probussense.com/application/assetdata?user_id=" + user_id;
+                // Making a request to url and getting response
+                String jsonStr = sh.makeServiceCall(url);
 
-            try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                Boolean error=jsonObj.getBoolean("error");
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    Boolean error = jsonObj.getBoolean("error");
 
-                if(!error){
-                    JSONArray data=jsonObj.getJSONArray("data");
+                    if (!error) {
+                        JSONArray data = jsonObj.getJSONArray("data");
 
-                    for(int i=0;i<data.length();i++){
-                        JSONObject object=data.getJSONObject(i);
-                        JSONObject assests=object.getJSONObject("asset");
-                        JSONObject user=object.getJSONObject("user");
+                        for (int i = 0; i < data.length(); i++) {
+                            JSONObject object = data.getJSONObject(i);
+                            JSONObject assests = object.getJSONObject("asset");
+                            JSONObject user = object.getJSONObject("user");
 
-                        pools.add(new swimmingpools(user.getString("organisation"),assests.getString("calling_name"),assests.getString("address"),object.getDouble("ph"),object.getDouble("cl"),object.getDouble("tp"),object.getString("dt"),assests.getDouble("asset_id")));
-                        organizationNamestr=user.getString("organisation");
+                            pools.add(new swimmingpools(user.getString("organisation"), assests.getString("calling_name"), assests.getString("address"), object.getDouble("ph"), object.getDouble("cl"), object.getDouble("tp"), object.getString("dt"), assests.getDouble("asset_id")));
+                            organizationNamestr = user.getString("organisation");
+                        }
+
+
                     }
 
 
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }
+            else{
+                Intent i=new Intent(context,login.class);
+                startActivity(i);
             }
 
             return null;

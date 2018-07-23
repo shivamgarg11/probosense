@@ -3,9 +3,12 @@ package com.shivam.probussense.Services;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
@@ -98,26 +101,29 @@ public class Mynotifyservice extends Service {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null) {
 
 
-            String url = "http://water.probussense.com/application/getnotify?user_id="+user_id;
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+                String url = "http://water.probussense.com/application/getnotify?user_id=" + user_id;
+                // Making a request to url and getting response
+                String jsonStr = sh.makeServiceCall(url);
 
-            try {
-                JSONArray jsonarray = new JSONArray(jsonStr);
-                JSONObject object=jsonarray.getJSONObject(0);
-                String msg=object.getString("msg");
+                try {
+                    JSONArray jsonarray = new JSONArray(jsonStr);
+                    JSONObject object = jsonarray.getJSONObject(0);
+                    String msg = object.getString("msg");
 
-                if(msg.length()==4){
-                    msgboolean=true;
+                    if (msg.length() == 4) {
+                        msgboolean = true;
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-
 
             return null;
         }

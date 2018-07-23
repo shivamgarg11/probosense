@@ -1,7 +1,10 @@
 package com.shivam.probussense.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -49,7 +52,13 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 useridstr=userid.getText().toString();
                 passwordstr=password.getText().toString();
-                new GetContacts().execute();
+
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
+                new GetContacts().execute();}else{
+                    Toast.makeText(login.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
                 progressBarlogin.setVisibility(View.VISIBLE);
             }
         });
@@ -82,36 +91,37 @@ public class login extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null) {
 
 
+                String url = "http://water.probussense.com/application/login?username=" + useridstr + "&password=" + passwordstr;
+                // Making a request to url and getting response
+                String jsonStr = sh.makeServiceCall(url);
 
-            String url = "http://water.probussense.com/application/login?username="+useridstr+"&password="+passwordstr;
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+                Log.e(TAG, "Response from url: " + jsonStr);
 
-            Log.e(TAG, "Response from url: " + jsonStr);
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    //Log.e(TAG, "Response from json: " + jsonObj+"\n");
+                    error = jsonObj.getBoolean("error");
+                    if (!error) {
+                        JSONObject data = jsonObj.getJSONObject("data");
+                        USERID = data.getString("user_id");
 
-            try {
-                JSONObject jsonObj = new JSONObject(jsonStr);
-                //Log.e(TAG, "Response from json: " + jsonObj+"\n");
-                error=jsonObj.getBoolean("error");
-                if(!error){
-                    JSONObject data = jsonObj.getJSONObject("data");
-                    USERID=data.getString("user_id");
+                    } else {
+                        msg = jsonObj.getString("msg");
 
-                }else {
-                    msg=jsonObj.getString("msg");
+                    }
 
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-
-
-
 
 
 

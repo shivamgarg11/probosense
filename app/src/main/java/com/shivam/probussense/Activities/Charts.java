@@ -1,13 +1,17 @@
 package com.shivam.probussense.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -73,9 +77,15 @@ public class Charts extends AppCompatActivity {
         week1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                type=0;
-                new GetContactsSUBCHART().execute();
 
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
+                    type = 0;
+                    new GetContactsSUBCHART().execute();
+                }else{
+                    Toast.makeText(Charts.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -83,32 +93,56 @@ public class Charts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
                 type=1;
                 new GetContactsSUBCHART().execute();
+            }else{
+                    Toast.makeText(Charts.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         week3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
                 type=2;
                 new GetContactsSUBCHART().execute();
+            }else{
+                    Toast.makeText(Charts.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         week4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                type=3;
-                new GetContactsSUBCHART().execute();
-
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
+                    type = 3;
+                    new GetContactsSUBCHART().execute();
+                }else{
+                    Toast.makeText(Charts.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         maingraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                if (activeNetworkInfo != null) {
                 new GetContacts().execute();
+            }else{
+                    Toast.makeText(Charts.this, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -139,6 +173,10 @@ public class Charts extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null){
+
 
 
             String url = "http://water.probussense.com/application/chart?asset_id="+hubid;
@@ -161,6 +199,7 @@ public class Charts extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
             }
 
             return null;
@@ -270,64 +309,71 @@ public class Charts extends AppCompatActivity {
             weeks1[5]=0;
             weeks1[6]=0;
 
-            String url = "http://water.probussense.com/application/chart?asset_id=" + hubid;
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
 
-            try {
-                JSONArray jsonObj = new JSONArray(jsonStr);
-
-                JSONArray array1 = jsonObj.getJSONArray(type);
-
-                for (int j = 0; j < array1.length(); j++) {
-
-                    JSONObject object = array1.getJSONObject(j);
-
-                    String dt = object.getString("dt");
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null) {
 
 
-                    int val = Integer.valueOf(dt.substring(8, 10));
+                String url = "http://water.probussense.com/application/chart?asset_id=" + hubid;
+                // Making a request to url and getting response
+                String jsonStr = sh.makeServiceCall(url);
+
+                try {
+                    JSONArray jsonObj = new JSONArray(jsonStr);
+
+                    JSONArray array1 = jsonObj.getJSONArray(type);
+
+                    for (int j = 0; j < array1.length(); j++) {
+
+                        JSONObject object = array1.getJSONObject(j);
+
+                        String dt = object.getString("dt");
 
 
-                    String time = object.getString("duration");
+                        int val = Integer.valueOf(dt.substring(8, 10));
 
 
-                    switch ((val % 7)) {
-                        case 0:
-                            weeks1[0] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                        String time = object.getString("duration");
 
-                        case 1:
-                            weeks1[1] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
 
-                        case 2:
-                            weeks1[2] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                        switch ((val % 7)) {
+                            case 0:
+                                weeks1[0] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
 
-                        case 3:
-                            weeks1[3] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                            case 1:
+                                weeks1[1] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
 
-                        case 4:
-                            weeks1[4] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                            case 2:
+                                weeks1[2] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
 
-                        case 5:
-                            weeks1[5] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                            case 3:
+                                weeks1[3] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
 
-                        case 6:
-                            weeks1[6] += Integer.valueOf(time.substring(0, time.length() - 7));
-                            break;
+                            case 4:
+                                weeks1[4] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
+
+                            case 5:
+                                weeks1[5] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
+
+                            case 6:
+                                weeks1[6] += Integer.valueOf(time.substring(0, time.length() - 7));
+                                break;
+                        }
+
                     }
 
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
                 }
-
-
-            } catch (JSONException e) {
-
-                e.printStackTrace();
             }
 
             return null;
