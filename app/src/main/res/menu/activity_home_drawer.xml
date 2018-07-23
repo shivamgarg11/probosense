@@ -7,7 +7,7 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/home"
-            android:title="HOME" />
+            android:title="Home" />
         <item
             android:id="@+id/faq"
             android:icon="@drawable/faq"
@@ -15,7 +15,7 @@
         <item
             android:id="@+id/payment"
             android:icon="@drawable/payment"
-            android:title="PAYMENT" />
+            android:title="Payment" />
 
     </group>
 
@@ -25,12 +25,12 @@
             <item
                 android:id="@+id/contactus"
                 android:icon="@drawable/contactus"
-                android:title="CONTACT US" />
+                android:title="Contact Us" />
 
             <item
                 android:id="@+id/aboutus"
                 android:icon="@drawable/aboutus"
-                android:title="ABOUT US" />
+                android:title="About Us" />
         </menu>
     </item>
 

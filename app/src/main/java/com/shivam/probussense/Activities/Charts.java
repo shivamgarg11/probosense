@@ -120,9 +120,6 @@ public class Charts extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i=new Intent(Charts.this,Home.class);
-        startActivity(i);
-        finish();
 
 
 
@@ -182,9 +179,10 @@ public class Charts extends AppCompatActivity {
 
 
             chart.setDrawGridBackground(false);
-            chart.setDrawValueAboveBar(false);
+            chart.setDrawValueAboveBar(true);
             chart.setGridBackgroundColor(Color.WHITE);
             chart.setBorderColor(Color.WHITE);
+
 
             XAxis xaxis=chart.getXAxis();
             xaxis.setDrawGridLines(false);
@@ -349,7 +347,7 @@ public class Charts extends AppCompatActivity {
 
 
             chartsub.setDrawGridBackground(false);
-            chartsub.setDrawValueAboveBar(false);
+            chartsub.setDrawValueAboveBar(true);
             chartsub.setGridBackgroundColor(Color.WHITE);
             chartsub.setBorderColor(Color.WHITE);
 

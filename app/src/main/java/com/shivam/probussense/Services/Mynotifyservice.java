@@ -1,6 +1,7 @@
 package com.shivam.probussense.Services;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
 
+import com.shivam.probussense.Activities.login;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
 
@@ -132,6 +134,12 @@ public class Mynotifyservice extends Service {
                                 .setColor(Color.RED)
                                 .setContentText("Pools are not safe");
 
+
+                PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0,
+                        new Intent(getApplicationContext(), login.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                mBuilder.setContentIntent(contentIntent);
 
                 // Gets an instance of the NotificationManager service//
 

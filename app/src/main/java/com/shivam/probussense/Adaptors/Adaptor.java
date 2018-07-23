@@ -56,11 +56,11 @@ public class Adaptor extends RecyclerView.Adapter<Adaptor.CourseViewHolder> {
 
 
         if(pool.getPh()<7.2||pool.getPh()>8.0||pool.getChlorine()<1.0||pool.getChlorine()>3.0){
-            holder.recycleviewcheck.setBackgroundColor(Color.RED);
+            holder.recycleviewcheck.setBackgroundResource(R.drawable.redcircle);
 
         }
         else{
-            holder.recycleviewcheck.setBackgroundColor(Color.rgb(24,124,46));
+            holder.recycleviewcheck.setBackgroundResource(R.drawable.greencircle);
 
         }
 
