@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.shivam.probussense.Activities.Charts;
 import com.shivam.probussense.Classes.swimmingpools;
 import com.shivam.probussense.R;
@@ -22,6 +23,8 @@ import com.shivam.probussense.R;
  * A simple {@link Fragment} subclass.
  */
 public class tableswipFragment extends Fragment {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     swimmingpools pool;
     Context context;
@@ -46,6 +49,8 @@ public class tableswipFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tableswip, container, false);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 
         companyname=rootView.findViewById(R.id.companyname);
         Swimmingpoolname = rootView.findViewById(R.id.fragSwimmingpoolname);

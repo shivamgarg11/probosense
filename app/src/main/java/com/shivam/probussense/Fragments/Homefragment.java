@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.shivam.probussense.Activities.login;
 import com.shivam.probussense.Adaptors.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
@@ -42,6 +43,8 @@ import java.util.ArrayList;
  */
 public class Homefragment extends Fragment {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     View rootview;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,6 +55,7 @@ public class Homefragment extends Fragment {
     RecyclerView recyclerView;
 
     public static ArrayList<swimmingpools> pools=new ArrayList<>();
+
     TextView organizationName;
 
     private static int NUM_PAGES=0;
@@ -80,6 +84,9 @@ public class Homefragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+
         // Inflate the layout for this fragment
         rootview= inflater.inflate(R.layout.fragment_homefragment, container, false);
 
@@ -90,8 +97,8 @@ public class Homefragment extends Fragment {
         ConnectivityManager connectivityManager =(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null) {
-
             new GetContacts().execute();
+
         }else{
             Toast.makeText(context, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
         }
@@ -108,6 +115,8 @@ public class Homefragment extends Fragment {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
+
 
         @Override
         public Fragment getItem(int position) {
@@ -155,6 +164,7 @@ public class Homefragment extends Fragment {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
+                if(jsonStr!=null){
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     Boolean error = jsonObj.getBoolean("error");
@@ -177,8 +187,13 @@ public class Homefragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Intent i=new Intent(context,login.class);
+                    startActivity(i);
                 }
-            }
+            }else{
+                    Intent i=new Intent(context,login.class);
+                    startActivity(i);
+            }}
             else{
                 Intent i=new Intent(context,login.class);
                 startActivity(i);

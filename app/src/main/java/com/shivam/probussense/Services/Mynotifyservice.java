@@ -110,18 +110,23 @@ public class Mynotifyservice extends Service {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
-                try {
-                    JSONArray jsonarray = new JSONArray(jsonStr);
-                    JSONObject object = jsonarray.getJSONObject(0);
-                    String msg = object.getString("msg");
+                if(jsonStr!=null) {
 
-                    if (msg.length() == 4) {
-                        msgboolean = true;
+                    try {
+                        JSONArray jsonarray = new JSONArray(jsonStr);
+                        JSONObject object = jsonarray.getJSONObject(0);
+                        String msg = object.getString("msg");
+
+                        if (msg.length() == 4) {
+                            msgboolean = true;
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return null;
+
                     }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
 

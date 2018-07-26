@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.shivam.probussense.Fragments.Homefragment;
 import com.shivam.probussense.R;
 import com.shivam.probussense.Services.Mynotifyservice;
@@ -23,10 +24,15 @@ import com.shivam.probussense.Services.Mynotifyservice;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
         Intent i=new Intent(Home.this, Mynotifyservice.class);

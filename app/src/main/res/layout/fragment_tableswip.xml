@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="NAME"
             android:gravity="center"
-            android:textSize="22dp"/>
+            android:textSize="18dp"/>
 
         <TextView
             android:id="@+id/fragtexttemp"
@@ -108,7 +108,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="6.8"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textStyle="bold"
@@ -118,7 +117,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Poor"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textStyle="bold"
@@ -190,7 +188,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1.3"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textStyle="bold"
@@ -200,7 +197,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Satisfactory"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textStyle="bold"
@@ -229,7 +225,7 @@
         android:layout_margin="10dp"/>
 
     <FrameLayout
-        android:layout_weight="2"
+        android:layout_weight="2.5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -242,6 +238,7 @@
             android:layout_gravity="center" />
 
         <TextView
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:textSize="20dp"
             android:layout_width="wrap_content"
@@ -255,6 +252,7 @@
     </FrameLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

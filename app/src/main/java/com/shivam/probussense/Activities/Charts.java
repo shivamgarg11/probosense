@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -19,6 +21,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
 
@@ -28,8 +32,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+
+
 public class Charts extends AppCompatActivity {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     //
     BarChart chartsub ;
     ArrayList<BarEntry> BARENTRYsub ;
@@ -53,11 +60,16 @@ public class Charts extends AppCompatActivity {
 
     Button week1,week2,week3,week4,maingraph;
 
+    TextView graphheading;
+
+    LinearLayout maingraphbtnlayout,weekgraphbthlayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
         hubid=getIntent().getDoubleExtra("assert_id",0);
@@ -70,6 +82,11 @@ public class Charts extends AppCompatActivity {
         week3=findViewById(R.id.btnweek3);
         week4=findViewById(R.id.btnweek4);
         maingraph=findViewById(R.id.btnmaingraph);
+
+        maingraphbtnlayout=findViewById(R.id.layoutmaingraphbtn);
+        weekgraphbthlayout=findViewById(R.id.layoutweekgraphbtn);
+
+        graphheading=findViewById(R.id.graphheading);
 
 
         new GetContacts().execute();
@@ -166,6 +183,9 @@ public class Charts extends AppCompatActivity {
             super.onPreExecute();
             chartsub = (BarChart) findViewById(R.id.subchart1);
             chartsub.setVisibility(View.GONE);
+            maingraphbtnlayout.setVisibility(View.GONE);
+            weekgraphbthlayout.setVisibility(View.VISIBLE);
+            graphheading.setText("Number of variation from Standard Values \n (Last 4 weeks)");
 
         }
 
@@ -183,6 +203,7 @@ public class Charts extends AppCompatActivity {
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url);
 
+            if(jsonStr!=null){
             try {
                 JSONArray jsonObj = new JSONArray(jsonStr);
 
@@ -199,7 +220,10 @@ public class Charts extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                onBackPressed();
             }
+            }}else{
+                onBackPressed();
             }
 
             return null;
@@ -228,7 +252,7 @@ public class Charts extends AppCompatActivity {
             xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
             YAxis left=chart.getAxisLeft();// no axis labels
-            left.setDrawGridLines(false); // no grid lines
+           // left.setDrawGridLines(false); // no grid lines
             left.setDrawZeroLine(true); // draw a zero line
             chart.getAxisRight().setEnabled(false);
 
@@ -247,7 +271,7 @@ public class Charts extends AppCompatActivity {
 
             BARDATA = new BarData(BarEntryLabels, Bardataset);
 
-            Bardataset.setColor(Color.rgb(19,138,176));
+            Bardataset.setColor(Color.rgb(51,188,232));
             Bardataset.setBarSpacePercent(50);
             Bardataset.setDrawValues(false);
 
@@ -293,6 +317,9 @@ public class Charts extends AppCompatActivity {
 
             chartsub = (BarChart) findViewById(R.id.subchart1);
             chartsub.setVisibility(View.GONE);
+            maingraphbtnlayout.setVisibility(View.VISIBLE);
+            weekgraphbthlayout.setVisibility(View.GONE);
+            graphheading.setText("Average time taken to retain Standard Values ");
 
         }
 
@@ -319,6 +346,7 @@ public class Charts extends AppCompatActivity {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
+                if(jsonStr!=null){
                 try {
                     JSONArray jsonObj = new JSONArray(jsonStr);
 
@@ -373,7 +401,10 @@ public class Charts extends AppCompatActivity {
                 } catch (JSONException e) {
 
                     e.printStackTrace();
+                    onBackPressed();
                 }
+            }}else{
+                onBackPressed();
             }
 
             return null;
@@ -402,7 +433,7 @@ public class Charts extends AppCompatActivity {
             xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
             YAxis left=chartsub.getAxisLeft();// no axis labels
-            left.setDrawGridLines(false); // no grid lines
+            //left.setDrawGridLines(false); // no grid lines
             left.setDrawZeroLine(true); // draw a zero line
             chartsub.getAxisRight().setEnabled(false);
 
@@ -419,7 +450,7 @@ public class Charts extends AppCompatActivity {
 
             BARDATAsub = new BarData(BarEntryLabelssub, Bardatasetsub);
 
-            Bardatasetsub.setColor(Color.rgb(19, 138, 176));
+            Bardatasetsub.setColor(Color.rgb(51, 188, 232));
             Bardatasetsub.setBarSpacePercent(50);
             chartsub.setData(BARDATAsub);
 

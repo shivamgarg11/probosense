@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "439119787655",
+    "firebase_url": "https://probussense.firebaseio.com",
+    "project_id": "probussense",
+    "storage_bucket": "probussense.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439119787655:android:546ff1cd1c8f101e",
+        "android_client_info": {
+          "package_name": "com.shivam.probussense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439119787655-j5ds12j27d7389uuoloqet7o822d2qut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shivam.probussense",
+            "certificate_hash": "73b95d1dfae420e03dad6dff2d89ca279acc5995"
+          }
+        },
+        {
+          "client_id": "439119787655-fvsolt5resgu8a0co00cscnj3ojct5r5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1aZBjCbvy4x1z4UaykdWSt-WWXn0xwzc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439119787655-fvsolt5resgu8a0co00cscnj3ojct5r5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

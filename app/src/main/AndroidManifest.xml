@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+
+
         android:allowBackup="true"
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
@@ -15,6 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.login"
             android:screenOrientation="portrait">
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,13 +27,19 @@
         <activity
             android:name=".Activities.Home"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        </activity>
 
         <activity android:name=".Activities.Charts"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" >
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        </activity>
 
         <activity android:name=".Activities.Tablesrecycle"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+        </activity>
 
 
 

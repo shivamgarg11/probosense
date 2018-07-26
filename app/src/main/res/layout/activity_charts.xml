@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Charts">
+    tools:context=".Activities.Charts"
+    android:orientation="vertical"
+    android:background="#fff">
 
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="2">
+
+    <TextView
+        android:paddingTop="20dp"
+        android:id="@+id/graphheading"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_margin="10dp"/>
+
+</FrameLayout>
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="10">
 
 
     <ProgressBar
@@ -15,62 +40,70 @@
 
 
     <com.github.mikephil.charting.charts.BarChart
+        android:visibility="gone"
         android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="90dp"
-        android:visibility="gone"
         android:background="#fff"
         />
 
     <com.github.mikephil.charting.charts.BarChart
+        android:layout_weight="1"
         android:visibility="gone"
         android:id="@+id/subchart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="90dp"
         android:background="#fff"
         />
 
 
-    <TextView
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:layout_gravity="right"
-        android:layout_marginRight="82dp"/>
+</FrameLayout>
 
+
+    <FrameLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_gravity="right"
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="8dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/layoutweekgraphbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DETAILED ANALYSIS"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical">
 
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click on below button to see detailed view"
+                android:padding="10dp"/>
 
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/btnmaingraph"
-            android:textSize="15dp"
-            android:textColor="#fff"
-            android:text="MAIN GRAPH"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundbtn"/>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
         <Button
             android:layout_weight="1"
@@ -81,9 +114,9 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundbtn"/>
+            android:background="@drawable/roundbuttonofchart"/>
 
         <Button
             android:layout_weight="1"
@@ -94,9 +127,9 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundbtn"/>
+            android:background="@drawable/roundbuttonofchart"/>
 
         <Button
             android:layout_weight="1"
@@ -107,9 +140,9 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundbtn"/>
+            android:background="@drawable/roundbuttonofchart"/>
 
         <Button
             android:layout_weight="1"
@@ -120,13 +153,47 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundbtn"/>
+            android:background="@drawable/roundbuttonofchart"/>
+        </LinearLayout>
 
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutmaingraphbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+            <Button
+
+                android:id="@+id/btnmaingraph"
+                android:textSize="15dp"
+                android:textColor="#fff"
+                android:text=" Back to Main Graph"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundbuttonofchart"/>
 
 
 
     </LinearLayout>
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="8dp"/>
+    </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

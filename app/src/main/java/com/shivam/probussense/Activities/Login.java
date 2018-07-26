@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.shivam.probussense.Classes.HttpHandler;
 import com.shivam.probussense.R;
 
@@ -22,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class login extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     ProgressBar progressBarlogin;
     TextInputEditText userid,password;
@@ -39,6 +42,7 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         userid=findViewById(R.id.edituserid);
         password=findViewById(R.id.editpassword);
@@ -118,6 +122,7 @@ public class login extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    return null;
                 }
 
 
