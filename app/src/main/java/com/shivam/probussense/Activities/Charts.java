@@ -30,8 +30,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class Charts extends AppCompatActivity {
@@ -431,9 +433,9 @@ public class Charts extends AppCompatActivity {
             XAxis xaxis=chartsub.getXAxis();
             xaxis.setDrawGridLines(false);
             xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xaxis.setSpaceBetweenLabels(0);
 
             YAxis left=chartsub.getAxisLeft();// no axis labels
-            //left.setDrawGridLines(false); // no grid lines
             left.setDrawZeroLine(true); // draw a zero line
             chartsub.getAxisRight().setEnabled(false);
 
@@ -446,12 +448,14 @@ public class Charts extends AppCompatActivity {
 
             AddValuesToBarEntryLabels();
 
+
+
             Bardatasetsub = new BarDataSet(BARENTRYsub, "DURATION IN MINUTES");
 
             BARDATAsub = new BarData(BarEntryLabelssub, Bardatasetsub);
 
             Bardatasetsub.setColor(Color.rgb(51, 188, 232));
-            Bardatasetsub.setBarSpacePercent(50);
+            Bardatasetsub.setBarSpacePercent(30);
             chartsub.setData(BARDATAsub);
 
             chartsub.animateY(1500);
@@ -473,14 +477,48 @@ public class Charts extends AppCompatActivity {
 
         public void AddValuesToBarEntryLabels() {
 
-            BarEntryLabelssub.add("DAY 1");
-            BarEntryLabelssub.add("DAY 2");
-            BarEntryLabelssub.add("DAY 3");
-            BarEntryLabelssub.add("DAY 4");
-            BarEntryLabelssub.add("DAY 5");
-            BarEntryLabelssub.add("DAY 6");
-            BarEntryLabelssub.add("DAY 7");
 
+            String[] name=new String[7];
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat s = new SimpleDateFormat("MMM d");
+int currentday=cal.get(Calendar.DAY_OF_WEEK);
+
+                cal.add(Calendar.DAY_OF_YEAR, -(currentday)-(7*type)-7);
+                name[0]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[1]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[2]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[3]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[4]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[5]=s.format(new Date(cal.getTimeInMillis()));
+
+
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                name[6]=s.format(new Date(cal.getTimeInMillis()));
+
+
+            BarEntryLabelssub.add(name[0]);
+            BarEntryLabelssub.add(name[1]);
+            BarEntryLabelssub.add(name[2]);
+            BarEntryLabelssub.add(name[3]);
+            BarEntryLabelssub.add(name[4]);
+            BarEntryLabelssub.add(name[5]);
+            BarEntryLabelssub.add(name[6]);
 
         }
 
