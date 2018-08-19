@@ -38,7 +38,7 @@ import java.util.Date;
 
 public class Charts extends AppCompatActivity {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    public FirebaseAnalytics mFirebaseAnalytics;
     //
     BarChart chartsub ;
     ArrayList<BarEntry> BARENTRYsub ;
@@ -97,7 +97,7 @@ public class Charts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                     type = 0;
@@ -112,7 +112,7 @@ public class Charts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                 type=1;
@@ -127,7 +127,7 @@ public class Charts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                 type=2;
@@ -141,7 +141,7 @@ public class Charts extends AppCompatActivity {
         week4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                     type = 3;
@@ -155,7 +155,7 @@ public class Charts extends AppCompatActivity {
         maingraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                 new GetContacts().execute();
@@ -187,7 +187,7 @@ public class Charts extends AppCompatActivity {
             chartsub.setVisibility(View.GONE);
             maingraphbtnlayout.setVisibility(View.GONE);
             weekgraphbthlayout.setVisibility(View.VISIBLE);
-            graphheading.setText("Number of variation from Standard Values \n (Last 4 weeks)");
+            graphheading.setText("Number of variation from standard values \n (Last 4 weeks)");
 
         }
 
@@ -195,7 +195,7 @@ public class Charts extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
-            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null){
 
@@ -205,7 +205,7 @@ public class Charts extends AppCompatActivity {
             // Making a request to url and getting response
             String jsonStr = sh.makeServiceCall(url);
 
-            if(jsonStr!=null){
+            if(jsonStr!=null&&jsonStr.length()!=0){
             try {
                 JSONArray jsonObj = new JSONArray(jsonStr);
 
@@ -321,7 +321,7 @@ public class Charts extends AppCompatActivity {
             chartsub.setVisibility(View.GONE);
             maingraphbtnlayout.setVisibility(View.VISIBLE);
             weekgraphbthlayout.setVisibility(View.GONE);
-            graphheading.setText("Average time taken to retain Standard Values ");
+            graphheading.setText("Average time taken to retain standard values ");
 
         }
 
@@ -339,7 +339,7 @@ public class Charts extends AppCompatActivity {
             weeks1[6]=0;
 
 
-            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null) {
 
@@ -348,7 +348,7 @@ public class Charts extends AppCompatActivity {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
-                if(jsonStr!=null){
+                if(jsonStr!=null&&jsonStr.length()!=0){
                 try {
                     JSONArray jsonObj = new JSONArray(jsonStr);
 
@@ -484,7 +484,7 @@ public class Charts extends AppCompatActivity {
             SimpleDateFormat s = new SimpleDateFormat("MMM d");
 int currentday=cal.get(Calendar.DAY_OF_WEEK);
 
-                cal.add(Calendar.DAY_OF_YEAR, -(currentday)-(7*type)-7);
+                cal.add(Calendar.DAY_OF_YEAR, -(currentday)-(7*type)+1);
                 name[0]=s.format(new Date(cal.getTimeInMillis()));
 
 

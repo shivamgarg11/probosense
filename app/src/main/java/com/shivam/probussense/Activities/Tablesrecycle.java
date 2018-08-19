@@ -31,7 +31,7 @@ import org.json.JSONObject;
 
 public class Tablesrecycle extends AppCompatActivity {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    public FirebaseAnalytics mFirebaseAnalytics;
 
     swimmingpools pool;
 
@@ -53,7 +53,7 @@ public class Tablesrecycle extends AppCompatActivity {
             Toast.makeText(this, " No Data Avaliable ", Toast.LENGTH_SHORT).show();
             onBackPressed();
         } else {
-            ConnectivityManager connectivityManager =(ConnectivityManager)Tablesrecycle.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager =(ConnectivityManager)Tablesrecycle.this.getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null) {
                 new GetContacts().execute();
@@ -81,7 +81,7 @@ public class Tablesrecycle extends AppCompatActivity {
 
             HttpHandler sh = new HttpHandler();
 
-            ConnectivityManager connectivityManager =(ConnectivityManager)Tablesrecycle.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager =(ConnectivityManager)Tablesrecycle.this.getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null) {
 
@@ -98,7 +98,7 @@ public class Tablesrecycle extends AppCompatActivity {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
-                if(jsonStr!=null){
+                if(jsonStr!=null&&jsonStr.length()!=0){
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     Boolean error = jsonObj.getBoolean("error");

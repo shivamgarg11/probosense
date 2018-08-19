@@ -110,7 +110,7 @@ public class Mynotifyservice extends Service {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
-                if(jsonStr!=null) {
+                if(jsonStr!=null&&jsonStr.length()!=0) {
 
                     try {
                         JSONArray jsonarray = new JSONArray(jsonStr);

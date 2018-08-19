@@ -41,7 +41,7 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:textColor="#000"
+            android:textColor="#7c7c7c"
             android:id="@+id/fragSwimmingpoolname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                 android:textColor="#7c7c7c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(Standard  7.2 - 8.0 )"
+                android:text="(Standard  7.2 - 8.0)"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="15dp" />
@@ -207,7 +207,7 @@
                 android:textColor="#7c7c7c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(Standard  1.0 - 3.0 ppm )"
+                android:text="(Standard  1.0 - 3.0 ppm)"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="15dp" />
@@ -225,20 +225,21 @@
         android:layout_margin="10dp"/>
 
     <FrameLayout
-        android:layout_weight="2.5"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
+            android:layout_marginTop="-10dp"
             android:id="@+id/fraganalytics"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/analyticsicon"
-            android:layout_gravity="center" />
+            android:layout_gravity="top|center" />
 
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:textSize="20dp"
             android:layout_width="wrap_content"
@@ -263,7 +264,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Last Updated :"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp"/>
 
 
 
@@ -277,6 +279,7 @@
             android:textSize="12dp"/>
 
         <TextView
+            android:layout_weight="1"
             android:textColor="#7c7c7c"
             android:id="@+id/fragtexttime"
             android:layout_width="wrap_content"
@@ -291,7 +294,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hub ID:"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:textSize="12dp"/>
 
         <TextView
             android:textColor="#7c7c7c"
@@ -300,18 +304,17 @@
             android:layout_height="wrap_content"
             android:text="Hubid"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textSize="12dp"/>
 
 
     </LinearLayout>
 
 
     <TextView
-        android:layout_weight="1"
-        android:layout_marginTop="5dp"
         android:background="#31bce7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
 
 </LinearLayout>

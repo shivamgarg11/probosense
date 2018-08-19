@@ -17,11 +17,11 @@
             android:icon="@drawable/payment"
             android:title="Payment" />
 
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="">
         <menu>
-
             <item
                 android:id="@+id/contactus"
                 android:icon="@drawable/contactus"

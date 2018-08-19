@@ -24,7 +24,6 @@ import com.shivam.probussense.R;
  */
 public class tableswipFragment extends Fragment {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     swimmingpools pool;
     Context context;
@@ -50,7 +49,6 @@ public class tableswipFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_tableswip, container, false);
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 
         companyname=rootView.findViewById(R.id.companyname);
         Swimmingpoolname = rootView.findViewById(R.id.fragSwimmingpoolname);
@@ -73,7 +71,7 @@ public class tableswipFragment extends Fragment {
         phvalue.setText(String.valueOf(pool.getPh()));
         clvalue.setText(String.valueOf(pool.getChlorine()));
 
-        temp.setText(String.valueOf("T="+pool.getTemp()+"C"));
+        temp.setText(String.valueOf("T="+pool.getTemp()+"°C"));
         hubid.setText(String.valueOf(pool.getHubid()));
         date.setText(pool.getDatetime().substring(0,10));
         time.setText(pool.getDatetime().substring(11,16));

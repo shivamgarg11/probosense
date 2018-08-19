@@ -7,6 +7,8 @@
     tools:context=".Activities.login"
     android:background="#fff">
 
+
+
     <LinearLayout
        android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -17,7 +19,6 @@
 
 
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -29,6 +30,7 @@
 
 
         <ImageView
+            android:id="@+id/imagelogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
@@ -73,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/password"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="10dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -97,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/roundbtn"
+            android:background="@drawable/roundbuttonofchart"
             android:text="LOGIN"
             android:textColor="#fff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -117,5 +119,6 @@
         android:layout_gravity="center|bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 
 </FrameLayout>

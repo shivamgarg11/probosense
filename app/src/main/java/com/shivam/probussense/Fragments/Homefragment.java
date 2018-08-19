@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.shivam.probussense.Activities.Home;
 import com.shivam.probussense.Activities.login;
 import com.shivam.probussense.Adaptors.Adaptor;
 import com.shivam.probussense.Classes.HttpHandler;
@@ -43,7 +44,6 @@ import java.util.ArrayList;
  */
 public class Homefragment extends Fragment {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     View rootview;
 
@@ -85,7 +85,6 @@ public class Homefragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 
         // Inflate the layout for this fragment
         rootview= inflater.inflate(R.layout.fragment_homefragment, container, false);
@@ -94,13 +93,16 @@ public class Homefragment extends Fragment {
 
         progressBartable=rootview.findViewById(R.id.progressbartable);
 
-        ConnectivityManager connectivityManager =(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(getContext().CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null) {
             new GetContacts().execute();
 
         }else{
             Toast.makeText(context, "No Internet Avaliable", Toast.LENGTH_SHORT).show();
+
+
+
         }
 
 
@@ -164,7 +166,7 @@ public class Homefragment extends Fragment {
                 // Making a request to url and getting response
                 String jsonStr = sh.makeServiceCall(url);
 
-                if(jsonStr!=null){
+                if(jsonStr!=null&&jsonStr.length()!=0){
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     Boolean error = jsonObj.getBoolean("error");
@@ -187,14 +189,24 @@ public class Homefragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.e(TAG, "doInBackground: error" );
+                    SharedPreferences.Editor editor = getContext().getSharedPreferences("probussense", getContext().MODE_PRIVATE).edit();
+                    editor.putBoolean("login",false);
+                    editor.apply();
                     Intent i=new Intent(context,login.class);
                     startActivity(i);
                 }
             }else{
+                    SharedPreferences.Editor editor = getContext().getSharedPreferences("probussense", getContext().MODE_PRIVATE).edit();
+                    editor.putBoolean("login",false);
+                    editor.apply();
                     Intent i=new Intent(context,login.class);
                     startActivity(i);
             }}
             else{
+                SharedPreferences.Editor editor = getContext().getSharedPreferences("probussense", getContext().MODE_PRIVATE).edit();
+                editor.putBoolean("login",false);
+                editor.apply();
                 Intent i=new Intent(context,login.class);
                 startActivity(i);
             }
@@ -220,7 +232,6 @@ public class Homefragment extends Fragment {
 
                 mPagerAdapter = new ScreenSlidePagerAdapter(fragmentManager);
                 mPager.setAdapter(mPagerAdapter);
-                Toast.makeText(context, "Slide Horizontally ", Toast.LENGTH_SHORT).show();
             }
             else{
                 recyclerView=rootview.findViewById(R.id.recycleview);

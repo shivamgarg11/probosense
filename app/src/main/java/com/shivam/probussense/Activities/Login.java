@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 
 public class login extends AppCompatActivity {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    public FirebaseAnalytics mFirebaseAnalytics;
 
     ProgressBar progressBarlogin;
     TextInputEditText userid,password;
@@ -35,6 +36,8 @@ public class login extends AppCompatActivity {
     String useridstr,passwordstr;
     boolean error;
     String msg;
+
+
 
 
     @Override
@@ -51,13 +54,14 @@ public class login extends AppCompatActivity {
         progressBarlogin=findViewById(R.id.progresslogin);
 
 
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                useridstr=userid.getText().toString();
+                useridstr=userid.getText().toString().trim();
                 passwordstr=password.getText().toString();
 
-                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
                 if (activeNetworkInfo != null) {
                 new GetContacts().execute();}else{
@@ -95,7 +99,7 @@ public class login extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
 
-            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager =(ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null) {
 
@@ -106,25 +110,27 @@ public class login extends AppCompatActivity {
 
                 Log.e(TAG, "Response from url: " + jsonStr);
 
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-                    //Log.e(TAG, "Response from json: " + jsonObj+"\n");
-                    error = jsonObj.getBoolean("error");
-                    if (!error) {
-                        JSONObject data = jsonObj.getJSONObject("data");
-                        USERID = data.getString("user_id");
+                if(jsonStr!=null&&jsonStr.length()!=0) {
 
-                    } else {
-                        msg = jsonObj.getString("msg");
+                    try {
+                        JSONObject jsonObj = new JSONObject(jsonStr);
+                        //Log.e(TAG, "Response from json: " + jsonObj+"\n");
+                        error = jsonObj.getBoolean("error");
+                        if (!error) {
+                            JSONObject data = jsonObj.getJSONObject("data");
+                            USERID = data.getString("user_id");
 
+                        } else {
+                            msg = jsonObj.getString("msg");
+
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return null;
                     }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return null;
                 }
-
 
             }
 

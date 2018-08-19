@@ -21,6 +21,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer"
-        android:background="#fff"/>
+        android:background="#31bce7"
+        />
 
 </android.support.v4.widget.DrawerLayout>
